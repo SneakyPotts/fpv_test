@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Air Targets</title>
+</head>
+<body>
+<h1>WebSocket Air Targets</h1>
+<script>
+	const socket = new WebSocket('ws://localhost:8080');
+
+	socket.onopen = () => {
+		console.log('Підключено до WebSocket');
+	};
+
+	socket.onmessage = (event) => {
+		const targets = JSON.parse(event.data);
+		console.log('Оновлені цілі:', targets);
+	};
+
+	socket.onclose = () => {
+		console.log('З\'єднання з WebSocket закрите');
+	};
+</script>
+</body>
+</html>
